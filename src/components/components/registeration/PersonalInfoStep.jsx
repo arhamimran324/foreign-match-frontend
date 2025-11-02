@@ -10,7 +10,6 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
-import { Checkbox } from "../ui/checkbox";
 
 export default function PersonalInfoStep({
   formData,
@@ -19,6 +18,10 @@ export default function PersonalInfoStep({
   handleFileChange,
 }) {
   const hobbiesOptions = ["Travel", "Music", "Sports", "Cooking", "Reading"];
+
+  const handleRadioChange = (name, value) => {
+    handleInputChange({ target: { name, value } });
+  };
 
   return (
     <div className="space-y-8">
@@ -37,27 +40,27 @@ export default function PersonalInfoStep({
       {/* Name Section */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <Label htmlFor="firstName" className="text-[#388087] font-semibold">
+          <Label htmlFor="first_name" className="text-[#388087] font-semibold">
             First Name *
           </Label>
           <Input
-            id="firstName"
-            name="firstName"
+            id="first_name"
+            name="first_name"
             placeholder="Enter your first name"
-            value={formData.firstName}
+            value={formData.first_name}
             onChange={handleInputChange}
             className="mt-2 border-[#424034] focus:border-primary"
           />
         </div>
         <div>
-          <Label htmlFor="lastName" className="text-[#388087] font-semibold">
+          <Label htmlFor="last_name" className="text-[#388087] font-semibold">
             Last Name *
           </Label>
           <Input
-            id="lastName"
-            name="lastName"
+            id="last_name"
+            name="last_name"
             placeholder="Enter your last name"
-            value={formData.lastName}
+            value={formData.last_name}
             onChange={handleInputChange}
             className="mt-2 border-[#424034] focus:border-primary"
           />
@@ -87,14 +90,17 @@ export default function PersonalInfoStep({
           </Select>
         </div>
         <div>
-          <Label htmlFor="dateOfBirth" className="text-[#388087] font-semibold">
+          <Label
+            htmlFor="date_of_birth"
+            className="text-[#388087] font-semibold"
+          >
             Date of Birth *
           </Label>
           <Input
-            id="dateOfBirth"
-            name="dateOfBirth"
+            id="date_of_birth"
+            name="date_of_birth"
             type="date"
-            value={formData.dateOfBirth}
+            value={formData.date_of_birth}
             onChange={handleInputChange}
             className="mt-2 border-[#424034] focus:border-primary"
           />
@@ -149,15 +155,15 @@ export default function PersonalInfoStep({
         </div>
         <div>
           <Label
-            htmlFor="maritalStatus"
+            htmlFor="marital_status"
             className="text-[#388087] font-semibold"
           >
             Marital Status *
           </Label>
           <Select
-            value={formData.maritalStatus}
+            value={formData.marital_status}
             onValueChange={(value) =>
-              handleInputChange({ target: { name: "maritalStatus", value } })
+              handleInputChange({ target: { name: "marital_status", value } })
             }
           >
             <SelectTrigger className="mt-2 border-[#424034] ">
@@ -224,13 +230,13 @@ export default function PersonalInfoStep({
       {/* Body Type & Home Town */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <Label htmlFor="bodyType" className="text-[#388087] font-semibold">
+          <Label htmlFor="body_type" className="text-[#388087] font-semibold">
             Body Type *
           </Label>
           <Select
-            value={formData.bodyType}
+            value={formData.body_type}
             onValueChange={(value) =>
-              handleInputChange({ target: { name: "bodyType", value } })
+              handleInputChange({ target: { name: "body_type", value } })
             }
           >
             <SelectTrigger className="mt-2 border-[#424034] ">
@@ -246,14 +252,14 @@ export default function PersonalInfoStep({
           </Select>
         </div>
         <div>
-          <Label htmlFor="homeTown" className="text-[#388087] font-semibold">
+          <Label htmlFor="home_town" className="text-[#388087] font-semibold">
             Home Town *
           </Label>
           <Input
-            id="homeTown"
-            name="homeTown"
+            id="home_town"
+            name="home_town"
             placeholder="Enter your home town"
-            value={formData.homeTown}
+            value={formData.home_town}
             onChange={handleInputChange}
             className="mt-2 border-[#424034] focus:border-primary"
           />
@@ -264,16 +270,16 @@ export default function PersonalInfoStep({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <Label
-            htmlFor="relationshipIntention"
+            htmlFor="relationship_intention"
             className="text-[#388087] font-semibold"
           >
             Relationship Intention *
           </Label>
           <Select
-            value={formData.relationshipIntention}
+            value={formData.relationship_intention}
             onValueChange={(value) =>
               handleInputChange({
-                target: { name: "relationshipIntention", value },
+                target: { name: "relationship_intention", value },
               })
             }
           >
@@ -319,13 +325,16 @@ export default function PersonalInfoStep({
 
       {/* Travel History */}
       <div>
-        <Label htmlFor="travelHistory" className="text-[#388087] font-semibold">
+        <Label
+          htmlFor="travel_history"
+          className="text-[#388087] font-semibold"
+        >
           Travel History *
         </Label>
         <Select
-          value={formData.travelHistory}
+          value={formData.travel_history}
           onValueChange={(value) =>
-            handleInputChange({ target: { name: "travelHistory", value } })
+            handleInputChange({ target: { name: "travel_history", value } })
           }
         >
           <SelectTrigger className="mt-2 border-[#424034] ">
@@ -342,7 +351,7 @@ export default function PersonalInfoStep({
 
       {/* Hobbies & Interests */}
       <div>
-        <Label className="text-[#388087] font-semibold mb-3 block">
+        <Label className="text-[#388087] font-semibold block">
           Hobbies & Interests
         </Label>
         <div className="flex flex-wrap gap-3">
@@ -411,79 +420,198 @@ export default function PersonalInfoStep({
         </div>
       </div>
 
-      {/* Lifestyle */}
+      {/* Lifestyle - Updated to Radio Buttons */}
       <div>
         <h3 className="text-lg font-semibold text-[#388087] mb-4">Lifestyle</h3>
-        <div className="space-y-3">
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="livingWith"
-              name="livingWith"
-              checked={formData.livingWith === "own"}
-              onChange={() =>
-                handleInputChange({
-                  target: { name: "livingWith", value: "own" },
-                })
-              }
-            />
-            <Label htmlFor="livingWith" className="cursor-pointer">
-              Living Situation: Own
+        <div className="space-y-6">
+          {/* Living Situation */}
+          <div className="flex gap-4 items-center mb-3">
+            <Label className="text-[#388087] font-semibold block">
+              Living Situation *
             </Label>
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="living_situation"
+                  value="own"
+                  checked={formData.living_situation === "own"}
+                  onChange={() => handleRadioChange("living_situation", "own")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>Own</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="living_situation"
+                  value="rent"
+                  checked={formData.living_situation === "rent"}
+                  onChange={() => handleRadioChange("living_situation", "rent")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>Rent</span>
+              </label>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="pets"
-              name="pets"
-              checked={formData.pets}
-              onChange={handleInputChange}
-            />
-            <Label htmlFor="pets" className="cursor-pointer">
-              You like Pets?
+
+          {/* Pets */}
+          <div className="flex gap-4 items-center mb-3">
+            <Label className="text-[#388087] font-semibold block">
+              Do you like Pets? *
             </Label>
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="pets"
+                  value="yes"
+                  checked={formData.pets === "yes"}
+                  onChange={() => handleRadioChange("pets", "yes")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>Yes</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="pets"
+                  value="no"
+                  checked={formData.pets === "no"}
+                  onChange={() => handleRadioChange("pets", "no")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>No</span>
+              </label>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="drugs"
-              name="drugs"
-              checked={formData.drugs}
-              onChange={handleInputChange}
-            />
-            <Label htmlFor="drugs" className="cursor-pointer">
-              Drugs?
+
+          {/* Willing to Relocate */}
+          <div className="flex gap-4 items-center mb-3">
+            <Label className="text-[#388087] font-semibold block">
+              Willing to relocate? *
             </Label>
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="willing_to_relocate"
+                  value="yes"
+                  checked={formData.willing_to_relocate === "yes"}
+                  onChange={() =>
+                    handleRadioChange("willing_to_relocate", "yes")
+                  }
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>Yes</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="willing_to_relocate"
+                  value="no"
+                  checked={formData.willing_to_relocate === "no"}
+                  onChange={() =>
+                    handleRadioChange("willing_to_relocate", "no")
+                  }
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>No</span>
+              </label>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="smoking"
-              name="smoking"
-              checked={formData.smoking}
-              onChange={handleInputChange}
-            />
-            <Label htmlFor="smoking" className="cursor-pointer">
-              Smoking?
+
+          {/* Drugs */}
+          <div className="flex gap-4 items-center mb-3">
+            <Label className="text-[#388087] font-semibold block">
+              Do you use drugs? *
             </Label>
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="drugs"
+                  value="yes"
+                  checked={formData.drugs === "yes"}
+                  onChange={() => handleRadioChange("drugs", "yes")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>Yes</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="drugs"
+                  value="no"
+                  checked={formData.drugs === "no"}
+                  onChange={() => handleRadioChange("drugs", "no")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>No</span>
+              </label>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="drinking"
-              name="drinking"
-              checked={formData.drinking}
-              onChange={handleInputChange}
-            />
-            <Label htmlFor="drinking" className="cursor-pointer">
-              Drinking?
+
+          {/* Smoking */}
+          <div className="flex gap-4 items-center mb-3">
+            <Label className="text-[#388087] font-semibold block">
+              Do you smoke? *
             </Label>
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="smoking"
+                  value="yes"
+                  checked={formData.smoking === "yes"}
+                  onChange={() => handleRadioChange("smoking", "yes")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>Yes</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="smoking"
+                  value="no"
+                  checked={formData.smoking === "no"}
+                  onChange={() => handleRadioChange("smoking", "no")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>No</span>
+              </label>
+            </div>
           </div>
-          <div className="flex items-center gap-3">
-            <Checkbox
-              id="willRelocate"
-              name="willRelocate"
-              checked={formData.willRelocate}
-              onChange={handleInputChange}
-            />
-            <Label htmlFor="willRelocate" className="cursor-pointer">
-              Willing to relocate?
+
+          {/* Drinking */}
+          <div className="flex gap-4 items-center mb-3">
+            <Label className="text-[#388087] font-semibold block">
+              Do you drink alcohol? *
             </Label>
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="drinking"
+                  value="yes"
+                  checked={formData.drinking === "yes"}
+                  onChange={() => handleRadioChange("drinking", "yes")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>Yes</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="radio"
+                  name="drinking"
+                  value="no"
+                  checked={formData.drinking === "no"}
+                  onChange={() => handleRadioChange("drinking", "no")}
+                  className="w-4 h-4 text-primary focus:ring-primary border-gray-300"
+                />
+                <span>No</span>
+              </label>
+            </div>
           </div>
         </div>
       </div>

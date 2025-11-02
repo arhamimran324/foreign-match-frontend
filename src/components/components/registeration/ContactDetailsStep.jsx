@@ -110,27 +110,58 @@ export default function ContactDetailsStep({ formData, handleInputChange }) {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <Label htmlFor="linkedin" className="text-[#388087] font-semibold">
+          <Label htmlFor="linkedin_id" className="text-[#388087] font-semibold">
             LinkedIn *
           </Label>
           <Input
-            id="linkedin"
-            name="linkedin"
+            id="linkedin_id"
+            name="linkedin_id"
             placeholder="Enter your LinkedIn URL"
-            value={formData.linkedin}
+            value={formData.linkedin_id}
             onChange={handleInputChange}
             className="mt-2 border-[#424034] focus:border-primary"
           />
         </div>
         <div>
-          <Label htmlFor="instagram" className="text-[#388087] font-semibold">
+          <Label
+            htmlFor="instagram_id"
+            className="text-[#388087] font-semibold"
+          >
             Instagram *
           </Label>
           <Input
-            id="instagram"
-            name="instagram"
+            id="instagram_id"
+            name="instagram_id"
             placeholder="Enter your Instagram handle"
-            value={formData.instagram}
+            value={formData.instagram_id}
+            onChange={handleInputChange}
+            className="mt-2 border-[#424034] focus:border-primary"
+          />
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <Label htmlFor="facebook_id" className="text-[#388087] font-semibold">
+            Facebook *
+          </Label>
+          <Input
+            id="facebook_id"
+            name="facebook_id"
+            placeholder="Enter your Facebook URL"
+            value={formData.facebook_id}
+            onChange={handleInputChange}
+            className="mt-2 border-[#424034] focus:border-primary"
+          />
+        </div>
+        <div>
+          <Label htmlFor="snapchat_id" className="text-[#388087] font-semibold">
+            Snapchat *
+          </Label>
+          <Input
+            id="snapchat_id"
+            name="snapchat_id"
+            placeholder="Enter your Snapchat handle"
+            value={formData.snapchat_id}
             onChange={handleInputChange}
             className="mt-2 border-[#424034] focus:border-primary"
           />
