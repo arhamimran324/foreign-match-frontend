@@ -8,11 +8,11 @@ export const loginUser = async (credentials) => {
   });
 };
 
-export const registerUser = async (customerData) => {
+export const registerUser = async (formdata) => {
   return await api({
-    url: "/api/auth/register",
     method: "post",
-    payload: customerData,
+    url: "/api/auth/register",
+    payload: formdata,
   });
 };
 

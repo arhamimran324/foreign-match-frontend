@@ -8,25 +8,27 @@ import MembershipStep from "./MembershipStep";
 import StepIndicator from "./StepIndicator";
 import { Card } from "../ui/card";
 import { Button } from "../ui/button";
+import { registerUser } from "@/api/service/auth";
+import { toast } from "sonner";
 
 export default function RegistrationForm() {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
     // Personal Info
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     gender: "",
-    dateOfBirth: "",
+    date_of_birth: "",
     education: "",
-    maritalStatus: "",
+    marital_status: "",
     children: "",
     height: "",
-    bodyType: "",
-    homeTown: "",
-    relationshipIntention: "",
+    body_type: "",
+    home_town: "",
+    relationship_intention: "",
     occupation: "",
     bio: "",
-    travelHistory: "",
+    travel_history: "",
     hobbies: [],
     religion: "",
     languages: "",
@@ -45,8 +47,10 @@ export default function RegistrationForm() {
     address: "",
     telephone: "",
     fax: "",
-    linkedin: "",
-    instagram: "",
+    linkedin_id: "",
+    instagram_id: "",
+    facebook_id: "",
+    snapchat_id: "",
 
     // Account Setup
     username: "",
@@ -54,7 +58,7 @@ export default function RegistrationForm() {
     confirmPassword: "",
 
     // Membership
-    membershipPlan: "",
+    membership_type: "",
   });
 
   const steps = [
@@ -103,9 +107,14 @@ export default function RegistrationForm() {
     }
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted:", formData);
-    alert("Registration completed! Check console for data.");
+  const handleSubmit = async () => {
+    try {
+      console.log("Form submitted:", formData);
+      await registerUser(formData);
+      toast.success("Registration Successfull");
+    } catch (err) {
+      toast.error(err?.response?.data?.message || "Something went wrong");
+    }
   };
 
   const renderStep = () => {

@@ -6,7 +6,7 @@ import { Card } from "../ui/card";
 export default function MembershipStep({ formData, handleInputChange }) {
   const plans = [
     {
-      id: "basic",
+      id: "free",
       name: "Basic",
       price: "$9.99",
       period: "Month",
@@ -18,7 +18,7 @@ export default function MembershipStep({ formData, handleInputChange }) {
       highlighted: false,
     },
     {
-      id: "standard",
+      id: "premium",
       name: "Standard",
       price: "$12.99",
       period: "Month",
@@ -32,7 +32,7 @@ export default function MembershipStep({ formData, handleInputChange }) {
       highlighted: true,
     },
     {
-      id: "platinum",
+      id: "vip",
       name: "Platinum",
       price: "$19.99",
       period: "Month",
@@ -123,7 +123,7 @@ export default function MembershipStep({ formData, handleInputChange }) {
             <Button
               onClick={() =>
                 handleInputChange({
-                  target: { name: "membershipPlan", value: plan.id },
+                  target: { name: "membership_type", value: plan.id },
                 })
               }
               className={`w-full font-semibold ${
@@ -132,7 +132,7 @@ export default function MembershipStep({ formData, handleInputChange }) {
                   : "bg-primary text-primary-foreground hover:bg-primary/90"
               }`}
             >
-              {formData.membershipPlan === plan.id
+              {formData.membership_type === plan.id
                 ? "✓ Selected"
                 : "Select Plan"}
             </Button>

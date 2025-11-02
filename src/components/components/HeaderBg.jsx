@@ -71,7 +71,7 @@ const HeaderBg = ({ image }) => {
             </div>
           </div>
 
-          <div className="flex-1 w-full md:max-w-lg bg-white/20 backdrop-blur-lg p-4 md:p-6 rounded-2xl shadow-xl text-white">
+          <div className="flex-1 w-full md:max-w-lg bg-[#3b7c82]/60  p-4 md:p-6 rounded-2xl shadow-xl text-white">
             <h2 className="text-2xl md:text-4xl font-light mb-3 md:mb-4 text-center">
               FIND YOUR PARTNER
             </h2>

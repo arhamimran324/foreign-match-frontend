@@ -8,7 +8,7 @@ const restApiClient = axios.create({
   // baseURL: process.env.NEXT_PUBLIC_REST_API_BASE_URL || "http://localhost:5000",
   baseURL:
     process.env.NEXT_PUBLIC_REST_API_BASE_URL ||
-    "https://ribbon-backend.vercel.app",
+    "https://foreign-match-backend.vercel.app",
 });
 
 restApiClient.interceptors.request.use((config) => {
